@@ -9,195 +9,262 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: one long page, a narrow reading column for words, wider grids for the work. Bluebonnet accent, cool paper ground. */
+/* Layout: an aged parchment page with pasted-in scraps and engraved tattoo-flash art, after Wren's moodboard.
+   Mobile first; opens to an editorial grid at 760px and frames the page edges with sprigs at 1240px.
+   Light parchment only, on every device. */
 :root {
-  --bg: #f6f6f3;
-  --surface: #ffffff;
-  --ink: #1d1e29;
-  --muted: #5a5d6e;
-  --line: #dcdce5;
-  --accent: #4549a8;
-  --accent-soft: #e6e7f7;
-  --gold: #a8741c;
-  --ph: #ececf2;
+  --paper: #EDE1C9;
+  --scrap: #F5ECDB;
+  --ink: #26231F;
+  --ink-soft: #5B5245;
+  --rule: #B9A684;
+  --rust: #A94F3D;
+  --rust-text: #8C3D2D;
+  --blue: #34506A;
+  --gold: #B88C3E;
+  --on-scrap: #26231F;
+  --on-scrap-soft: #5B5245;
+  --field: #FBF6EC;
+  --stain: rgba(120, 82, 40, .16);
+  --tex-op: 1;
+  --tex-blend: multiply;
+  --shadow: rgba(60, 40, 20, .28);
+  --art-bg: transparent;
+  --art-pad: 0px;
+  --art-mask: none;
+  --torn: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0.0 0.9L1.5 1.2L3.1 0.6L5.1 2.2L7.8 1.9L9.6 1.5L11.4 0.8L12.9 0.9L15.8 2.0L18.6 1.9L20.2 1.1L22.7 1.8L25.5 2.1L26.9 1.6L29.4 1.4L31.1 1.4L32.6 2.2L35.4 1.5L37.3 2.1L39.6 2.1L42.4 1.4L44.4 1.6L46.5 0.8L48.4 2.0L49.8 0.6L52.2 1.0L54.5 1.3L56.4 2.3L58.0 1.2L59.7 1.6L61.5 1.1L64.2 1.1L66.5 2.1L68.0 0.6L69.7 1.9L72.1 0.9L74.0 0.8L76.1 0.6L78.7 2.1L81.7 1.8L84.7 0.5L86.5 2.2L89.2 1.2L92.2 1.6L94.9 1.0L96.6 1.3L98.1 1.2L98.3 0.0L97.8 1.3L99.1 3.0L98.2 4.9L99.5 6.4L98.1 8.5L97.8 9.9L98.9 11.5L97.8 13.1L98.1 15.3L97.9 18.4L99.1 20.6L99.5 22.6L98.1 24.8L97.8 26.8L98.1 28.9L99.2 31.8L97.8 34.0L98.1 35.8L98.1 37.4L98.0 40.3L99.4 41.7L99.5 44.0L99.3 46.1L99.1 48.5L98.6 51.2L98.1 52.6L99.3 55.5L98.3 58.4L99.1 60.9L99.2 63.4L98.9 65.6L98.2 68.1L99.4 71.1L99.4 72.5L98.9 75.6L99.3 77.0L99.4 78.5L97.8 81.0L98.8 82.6L99.0 84.9L98.1 87.9L99.4 89.2L99.3 90.5L99.2 92.1L99.3 94.8L99.3 97.1L98.9 98.7L100.0 99.3L97.3 98.5L95.1 97.7L93.7 98.8L91.5 99.3L89.1 97.9L87.2 99.1L84.9 97.7L82.1 99.2L80.7 98.7L78.7 99.1L76.8 98.1L74.6 99.4L73.1 97.9L70.7 99.3L68.5 98.5L65.7 99.1L64.2 99.3L62.6 98.2L59.8 98.5L57.1 98.0L54.2 98.0L52.6 98.6L50.7 98.7L47.8 99.0L46.5 98.3L44.2 98.6L41.6 98.6L40.1 98.1L37.3 98.3L34.7 99.5L32.2 98.9L29.8 98.3L26.9 98.5L24.0 98.3L21.1 99.1L18.7 98.5L17.2 99.1L15.2 98.9L13.7 97.8L12.1 99.2L10.5 99.3L8.5 98.7L6.6 98.8L5.1 98.4L2.1 98.0L1.1 100.0L0.5 98.2L2.2 96.8L1.9 94.0L2.2 91.3L1.6 89.7L1.5 87.5L1.9 84.5L0.7 81.5L1.7 79.0L1.6 76.4L1.0 73.6L1.2 70.7L2.1 68.3L1.1 65.7L1.1 64.0L2.3 61.6L1.2 58.7L2.0 56.6L1.2 54.8L0.8 53.5L1.7 51.2L1.2 48.8L1.6 45.8L0.6 44.2L2.3 41.2L1.6 38.2L0.7 36.4L0.9 34.6L2.1 31.7L0.8 29.0L1.0 27.2L0.8 24.2L1.7 21.5L2.2 19.2L1.4 17.5L0.7 15.9L1.1 14.5L0.6 13.0L1.0 9.9L1.8 7.0L1.7 4.4L2.1 1.4Z'/%3E%3C/svg%3E");
+  color-scheme: light;
   --display: "Young Serif", Georgia, "Times New Roman", serif;
   --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #15161d; --surface: #1e2029; --ink: #ecebf2; --muted: #a4a6b8; --line: #2f3140;
-    --accent: #a3a7f5; --accent-soft: #272a46; --gold: #e0b45e; --ph: #262834; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #15161d; --surface: #1e2029; --ink: #ecebf2; --muted: #a4a6b8; --line: #2f3140;
-  --accent: #a3a7f5; --accent-soft: #272a46; --gold: #e0b45e; --ph: #262834; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
-  background: var(--bg); color: var(--ink);
-  font-family: var(--body); font-size: 17px; line-height: 1.6;
+  background-color: var(--paper);
+  background-image: radial-gradient(ellipse 120% 90% at 50% 40%, transparent 55%, var(--stain) 100%);
+  background-attachment: fixed;
+  color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.65;
+  position: relative; overflow-x: hidden;
 }
+/* Aged paper: one 512px mottled tile laid over the page */
+body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: url("img/art/paper.webp") repeat; background-size: 512px;
+  opacity: var(--tex-op); mix-blend-mode: var(--tex-blend);
+}
+body > * { position: relative; z-index: 1; }
 .wrap {
-  max-width: 1080px; margin: 0 auto;
+  max-width: 1100px; margin: 0 auto;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-a { color: var(--accent); text-underline-offset: 3px; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; line-height: 1.15; }
+a { color: var(--rust-text); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; line-height: 1.08; text-wrap: balance; }
 p { margin: 0; }
-.label {
-  font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
-}
+img { max-width: 100%; }
+.label { font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--rust-text); }
+.mono { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; }
 .draft {
   display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
-  color: var(--gold); border: 1px dashed var(--gold); border-radius: 4px; padding: 2px 6px;
+  color: var(--rust-text); border: 1px dashed var(--rust); border-radius: 2px; padding: 1px 6px;
 }
+.star { display: inline-block; width: 1em; height: 1em; color: var(--ink); vertical-align: -.1em; }
+
+/* Illustrations: engraved art lifted from the moodboard. In dark mode each one sits on a torn parchment scrap. */
+.art { display: block; height: auto; background: var(--art-bg); padding: var(--art-pad);
+  -webkit-mask-image: var(--art-mask); mask-image: var(--art-mask); -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+.art.torn { background: none; padding: 0; -webkit-mask-image: none; mask-image: none; filter: drop-shadow(2px 4px 6px var(--shadow)); }
+
+/* Pasted scraps: torn edge, lifted shadow, always paper-colored */
+.scrap { filter: drop-shadow(2px 6px 10px var(--shadow)); color-scheme: light; }
+.scrap > .paper {
+  background: var(--scrap); color: var(--on-scrap);
+  -webkit-mask-image: var(--torn); mask-image: var(--torn); -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+}
+.scrap .label { color: #8C3D2D; }
 
 /* Preview banner */
-.preview {
-  background: var(--accent-soft); color: var(--ink); font-size: 14px;
-}
-.preview .wrap { padding-block: 10px; }
+.preview { background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 12px; letter-spacing: .04em; }
+.preview .wrap { padding-block: 9px; }
 
-/* Header */
-header.site { border-bottom: 1px solid var(--line); }
-header.site .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; padding-block: 16px; }
-.mark { font-family: var(--display); font-size: 22px; color: var(--ink); text-decoration: none; }
-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 18px; }
-nav a { color: var(--muted); text-decoration: none; font-size: 15px; }
-nav a:hover { color: var(--accent); }
+/* Top bar */
+.topbar .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; padding-block: 14px; }
+.topbar .mark { display: inline-flex; align-items: center; gap: 8px; font-family: var(--display); font-size: 18px; color: var(--ink); text-decoration: none; }
+.topbar .mark .star { width: 18px; height: 18px; color: var(--gold); }
+.topbar ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 2px 18px; }
+.topbar nav a { font-family: var(--display); font-size: 15px; color: var(--ink); text-decoration: none; padding-block: 4px; display: inline-block; }
+.topbar nav a:hover { color: var(--rust-text); text-decoration: underline; }
+.topbar nav { margin-left: auto; }
 
 /* Hero */
-.hero .wrap { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; padding-block: 64px 48px; }
-.hero h1 { font-size: clamp(40px, 7vw, 72px); }
-.hero .roles { margin-top: 14px; font-size: 20px; color: var(--muted); max-width: 34ch; }
-.hero .roles b { color: var(--ink); font-weight: 600; }
-.photo {
-  width: 180px; aspect-ratio: 1; max-width: 100%; border-radius: 50%;
-  background: var(--ph); border: 1px dashed var(--line);
-  display: grid; place-items: center; text-align: center; color: var(--muted); font-size: 13px; padding: 20px;
+.hero .wrap { display: grid; gap: 28px; padding-block: 28px 20px; }
+.name { display: grid; gap: 14px; align-content: start; min-width: 0; }
+.name h1 { font-size: clamp(64px, 19vw, 132px); line-height: .9; letter-spacing: -.015em; }
+.name .tagline { font-family: var(--display); font-size: clamp(21px, 3.2vw, 27px); line-height: 1.25; max-width: 18ch; }
+.name .redrule { width: 120px; height: 2px; background: var(--rust); }
+.name .lede { color: var(--ink-soft); max-width: 38ch; }
+.name .bird { width: min(100%, 360px); margin-top: 8px; }
+.portrait-col { position: relative; justify-self: center; width: min(86%, 380px); }
+.portrait {
+  margin: 0; background: var(--scrap); padding: 10px; position: relative;
+  box-shadow: 0 0 0 1px rgba(38, 35, 31, .25), 3px 8px 18px var(--shadow);
 }
-.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-bottom: 56px; }
-.tile {
-  display: block; padding: 18px 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface);
-  text-decoration: none; color: var(--ink);
-}
-.tile:hover { border-color: var(--accent); }
-.tile strong { display: block; font-family: var(--display); font-weight: 400; font-size: 22px; }
-.tile span { color: var(--muted); font-size: 15px; }
+.portrait img { display: block; width: 100%; height: auto; filter: sepia(.22) saturate(.85) contrast(1.03); outline: 1px solid rgba(38, 35, 31, .5); }
+.portrait figcaption { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--on-scrap-soft); padding-top: 8px; }
+.portrait-col .sprig { position: absolute; width: 64px; right: -38px; top: 14%; }
+.frame-l, .frame-r { display: none; }
+
+/* Star divider */
+.divider { display: flex; align-items: center; gap: 14px; color: var(--ink); padding-block: 10px; }
+.divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+.divider .star { width: 26px; height: 26px; }
 
 /* Sections */
-section.block { border-top: 1px solid var(--line); }
-section.block > .wrap { padding-block: 64px; display: grid; gap: 28px; }
-.head { display: grid; gap: 8px; max-width: 62ch; }
-.head h2 { font-size: clamp(30px, 4.4vw, 44px); }
-.head p { color: var(--muted); }
+section.entry > .wrap { padding-block: 36px 48px; display: grid; gap: 28px; }
+.head { display: grid; gap: 6px; max-width: 60ch; }
+.head h2 { font-size: clamp(38px, 7vw, 56px); }
+.head p { color: var(--ink-soft); }
 
-/* Books */
-.books { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
-.book { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 22px; align-items: start; }
-.cover-img { display: block; width: 100%; height: auto; border-radius: 2px 4px 4px 2px; box-shadow: 0 0 0 1px rgba(0,0,0,.12), 0 6px 18px rgba(0,0,0,.14); }
-.cover {
-  aspect-ratio: 5.5 / 8.5; width: 100%; border-radius: 3px 6px 6px 3px; padding: 14px 12px;
-  display: flex; flex-direction: column; justify-content: space-between; position: relative;
-  box-shadow: inset 6px 0 0 rgba(0,0,0,.18);
-}
-.cover .t { font-family: var(--display); line-height: 1.1; }
-.cover .a { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
-.cover .tag { position: absolute; left: 8px; right: 8px; bottom: -26px; text-align: center; font-size: 11px; color: var(--muted); }
-.cover.cells { background: #2b2140; color: #f1e9ff; }
-.cover.cells .t { font-size: 34px; text-transform: lowercase; }
-.cover.cells .s { font-family: var(--mono); font-size: 10px; opacity: .8; margin-top: 4px; }
-.cover.cats { background: #2f5b58; color: #fdf6e8; }
-.cover.cats .t { font-size: 20px; }
-.book .info { display: grid; gap: 10px; min-width: 0; }
-.book h3 { font-size: 26px; }
-.meta { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-.btn {
-  justify-self: start; display: inline-block; padding: 10px 18px; border-radius: 999px;
-  background: var(--accent); color: var(--bg); text-decoration: none; font-weight: 600; font-size: 15px;
-}
-.btn:hover { filter: brightness(1.08); }
+/* Poetry */
+.poetry { display: grid; gap: 36px; }
+.shelf { display: grid; gap: 30px; align-content: start; min-width: 0; }
+.books { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.book { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.book img { display: block; width: 100%; height: auto; box-shadow: 0 0 0 1px rgba(0, 0, 0, .18), 3px 6px 14px var(--shadow); }
+.book h3 { font-size: 20px; margin-top: 6px; }
+.book .yr { font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft); letter-spacing: .06em; }
+.book p.desc { font-size: 15px; color: var(--ink-soft); line-height: 1.5; }
+.buy { font-family: var(--display); font-size: 15px; color: var(--ink); text-decoration: none; justify-self: start; border-bottom: 1px solid var(--rust); padding-bottom: 1px; }
+.buy:hover { color: var(--rust-text); }
+.featured { display: grid; gap: 14px; align-content: start; min-width: 0; }
+.featured .kicker { display: flex; justify-content: space-between; align-items: center; font-family: var(--display); font-size: 19px; border-bottom: 1px solid var(--ink); padding-bottom: 8px; }
+.featured h3 { font-size: 34px; }
+pre.poem { margin: 0; white-space: pre-wrap; font-family: var(--display); font-size: 17px; line-height: 1.72; color: inherit; }
+.featured .mush { width: 190px; justify-self: end; margin-top: 4px; }
+.featured .mush-scrap { display: none; }
+@media (min-width: 760px) { .featured .mush-scrap { display: block; width: 150px; justify-self: start; margin: 8px 0 0 12%; transform: rotate(-5deg); } }
+.glass > .paper { padding: 30px 26px 32px; display: grid; gap: 12px; }
+.glass { transform: rotate(-.8deg); }
+.glass h3 { font-size: 30px; }
 
-.poems { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 12px; }
-.poem { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px 26px; display: grid; gap: 14px; min-width: 0; }
-.poem h3 { font-size: 22px; }
-.poem pre {
-  margin: 0; white-space: pre-wrap; font-family: var(--display); font-size: 16px; line-height: 1.7; color: var(--ink);
-}
-.poem .from { font-size: 14px; color: var(--muted); }
+/* Sites I've built: a compact row of tiles */
+.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 16px; }
+.tile { display: grid; gap: 6px; align-content: start; min-width: 0; }
+.tile .shot { display: block; background: var(--scrap); padding: 5px; box-shadow: 0 0 0 1px rgba(38, 35, 31, .3), 2px 5px 12px var(--shadow); }
+.tile .shot img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: top; }
+.tile h3 { font-size: 20px; margin-top: 6px; }
+.tile .dom { font-family: var(--mono); font-size: 11.5px; overflow-wrap: anywhere; }
+.tile p { font-size: 14.5px; line-height: 1.5; color: var(--ink-soft); }
+.tile .how { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); letter-spacing: .04em; }
 
-/* Websites */
-.sites { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
-.site-card { display: grid; gap: 12px; min-width: 0; }
-.shot {
-  border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface);
-}
-.shot .bar { display: flex; gap: 6px; padding: 8px 10px; border-bottom: 1px solid var(--line); }
-.shot .bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); display: block; }
-.shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
-.site-card h3 { font-size: 24px; }
-.site-card p { color: var(--muted); }
-.site-card .built { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-
-/* Projects */
-.projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-.proj { border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: grid; gap: 8px; align-content: start; min-width: 0; background: var(--surface); }
-.proj h3 { font-size: 21px; }
-.proj p { color: var(--muted); font-size: 15px; }
-.status { justify-self: start; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; border: 1px solid currentColor; }
-.status.running { color: var(--accent); }
-.status.progress { color: var(--gold); }
+/* Things I've started */
+.ventures { display: grid; gap: 28px; align-items: start; }
+.ledger > .paper { padding: 26px 22px 24px; }
+.ledger ol { list-style: none; margin: 0; padding: 0; }
+.ledger li { display: grid; grid-template-columns: 3em minmax(0, 1fr); gap: 4px 12px; padding: 14px 0; border-bottom: 1px dotted #A8977A; }
+.ledger li:last-child { border-bottom: 0; }
+.ledger .no { font-family: var(--mono); font-size: 12px; color: #8C3D2D; padding-top: 6px; }
+.ledger .row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.ledger h3 { font-size: 24px; }
+.ledger p { color: var(--on-scrap-soft); font-size: 16px; line-height: 1.55; margin-top: 4px; }
+.state { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; padding: 2px 7px; border: 1.5px solid currentColor; border-radius: 2px; transform: rotate(-3deg); }
+.state.running { color: #8C3D2D; }
+.state.progress { color: #5B5245; border-style: dashed; }
+.ledger .note { font-family: var(--mono); font-size: 11.5px; color: var(--on-scrap-soft); line-height: 1.6; margin-top: 14px; border-top: 1px solid #A8977A; padding-top: 12px; }
+.ventures .dagger { width: 170px; justify-self: center; transform: rotate(4deg); }
 
 /* About */
-.about-grid { display: grid; grid-template-columns: 220px minmax(0, 62ch); gap: 36px; align-items: start; }
-.me { display: block; width: 100%; height: auto; border-radius: 10px; box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 8px 22px rgba(0,0,0,.14); }
-.about { display: grid; grid-template-columns: minmax(0, 62ch); gap: 16px; }
-.about p { font-size: 18px; }
+.about { display: grid; gap: 18px; position: relative; }
+.about .text { display: grid; gap: 16px; max-width: 58ch; min-width: 0; }
+.about .text p { font-size: 18px; }
+.about .ledge { position: relative; border-bottom: 1.5px solid var(--ink); display: flex; justify-content: flex-end; align-items: flex-end; min-height: 40px; }
+.about .ledge .cat { width: 170px; margin-bottom: -2px; }
+.about .ledge .sprig { width: 44px; margin-right: 10px; margin-bottom: 2px; }
 
 /* Contact */
-.contact-form { display: grid; gap: 16px; max-width: 56ch; justify-items: start; }
-.contact-form label { display: grid; gap: 6px; width: 100%; font-weight: 600; font-size: 15px; }
+.contact { display: grid; gap: 30px; align-items: center; }
+.card > .paper { padding: 30px 24px 30px; display: grid; gap: 18px; }
+.card .cardhead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; border-bottom: 1.5px solid var(--on-scrap); padding-bottom: 10px; }
+.card .cardhead span:last-child { font-family: var(--mono); font-size: 11.5px; color: var(--on-scrap-soft); }
+.contact-form { display: grid; gap: 16px; }
+.contact-form label { display: grid; gap: 6px; font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--on-scrap-soft); }
 .contact-form input, .contact-form textarea {
-  width: 100%; font: inherit; font-weight: 400; font-size: 16px; color: var(--ink); background: var(--surface);
-  border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px;
+  width: 100%; font-family: var(--body); letter-spacing: normal; text-transform: none; font-size: 17px; color: var(--on-scrap);
+  background: var(--field); border: 1px solid #B9A684; border-bottom: 2px solid var(--on-scrap); border-radius: 0; padding: 10px 12px;
 }
-.contact-form textarea { resize: vertical; }
-.contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
-.contact-form button { border: 0; cursor: pointer; font: inherit; }
-.form-note { color: var(--muted); }
-.ph-line { padding: 14px 16px; border: 1px dashed var(--line); border-radius: 8px; color: var(--muted); background: var(--ph); }
+.contact-form textarea { resize: vertical; min-height: 140px; line-height: 1.6; }
+.contact-form input:focus, .contact-form textarea:focus { outline: 2px solid #A94F3D; outline-offset: 2px; }
+.send {
+  justify-self: start; font-family: var(--mono); font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
+  color: #F5ECDB; background: #26231F; border: 0; padding: 11px 16px; cursor: pointer; box-shadow: 3px 3px 0 #A94F3D;
+}
+.send:hover { box-shadow: 1px 1px 0 #A94F3D; transform: translate(2px, 2px); }
+.send:disabled { opacity: .7; cursor: default; }
+@media (prefers-reduced-motion: reduce) { .send:hover { transform: none; } }
+.form-note { font-family: var(--mono); font-size: 13px; color: var(--on-scrap); }
+.contact .heart { width: 170px; justify-self: center; }
 
-footer { border-top: 1px solid var(--line); }
-footer .wrap { padding-block: 28px; color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; }
+/* Colophon */
+.colophon .wrap { padding-block: 26px 40px; display: grid; gap: 12px; justify-items: center; text-align: center; }
+.colophon .line { width: 100%; border-top: 1px solid var(--ink); }
+.colophon .star { width: 26px; height: 26px; color: var(--gold); }
+.colophon p { font-family: var(--display); font-size: 18px; max-width: 34ch; }
+.colophon .mono { color: var(--ink-soft); font-size: 11px; }
 
-@media (max-width: 760px) {
-  .hero .wrap { grid-template-columns: 1fr; padding-block: 40px 32px; }
-  .about-grid { grid-template-columns: 1fr; gap: 24px; }
-  .me { width: 180px; }
-  .tiles, .books, .poems, .sites, .projects { grid-template-columns: 1fr; }
-  .book { grid-template-columns: 110px minmax(0, 1fr); }
-  .cover.cells .t { font-size: 26px; }
-  .cover.cats .t { font-size: 16px; }
-  section.block > .wrap { padding-block: 48px; }
+@media (min-width: 760px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: start; padding-block: 44px 28px; column-gap: 56px; }
+  .portrait-col { width: 100%; max-width: 400px; justify-self: end; margin-top: 18px; }
+  .name .bird { width: 330px; margin-top: 16px; margin-left: -6px; }
+  .poetry { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 0; }
+  .shelf { padding-right: 40px; border-right: 1px solid var(--rule); }
+  .featured { padding-left: 40px; }
+  .books { gap: 26px; }
+  .glass { margin-right: 8%; }
+  .glass > .paper { padding: 38px 40px; }
+  .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+  .ventures { grid-template-columns: minmax(0, 1fr) 220px; gap: 44px; }
+  .ventures .dagger { width: 200px; margin-top: 30px; }
+  .ledger > .paper { padding: 34px 38px 30px; }
+  .ledger li { grid-template-columns: 4em minmax(0, 1fr); }
+  .about .ledge .cat { width: 190px; margin-right: 6%; }
+  .contact { grid-template-columns: minmax(0, 560px) minmax(0, 1fr); gap: 48px; }
+  .card > .paper { padding: 40px 40px 38px; }
+  .contact .heart { width: 200px; }
+}
+@media (min-width: 1240px) {
+  .frame-l, .frame-r { display: block; position: absolute; top: 90px; width: 62px; pointer-events: none; }
+  .frame-l { left: max(8px, calc(50% - 650px)); }
+  .frame-r { right: max(8px, calc(50% - 650px)); top: 1200px; }
 }
 </style>
 </head>
 <body>
-<header class="site">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="star" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 0.3L13.1 10.9L23.7 12L13.1 13.1L12 23.7L10.9 13.1L0.3 12L10.9 10.9Z"/>
+      <path fill="currentColor" d="M12 6.2L12.5 11.5L17.8 12L12.5 12.5L12 17.8L11.5 12.5L6.2 12L11.5 11.5Z" transform="rotate(45 12 12)"/>
+    </symbol>
+  </defs>
+</svg>
+
+
+<img class="art frame-l" src="img/art/sprig-b.webp" alt="" width="136" height="590">
+<img class="art frame-r" src="img/art/sprig-a.webp" alt="" width="148" height="586">
+
+<header class="topbar">
   <div class="wrap">
-    <a class="mark" href="#top" id="top">Wren Willett</a>
+    <a class="mark" href="#top"><svg class="star" aria-hidden="true"><use href="#star"/></svg>Wren Willett</a>
     <nav aria-label="Main">
       <ul>
-        <li><a href="#writing">Writing</a></li>
-        <li><a href="#websites">Websites</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="#poetry">Poetry</a></li>
+        <li><a href="#sites">Sites</a></li>
+        <li><a href="#started">Started</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -205,56 +272,83 @@ footer .wrap { padding-block: 28px; color: var(--muted); font-size: 14px; displa
   </div>
 </header>
 
-<main>
-  <section class="hero">
+<main id="top">
+  <section class="hero" aria-labelledby="name">
     <div class="wrap">
-      <div>
+      <div class="name">
         <p class="label">New Braunfels, Texas</p>
-        <h1>Wren Willett</h1>
-        <p class="roles"><b>Poet</b>, <b>officiant</b> and <b>small business builder</b>. I write poems and ceremonies, build websites, and help small businesses get up and running.</p>
+        <h1 id="name">Wren<br>Willett</h1>
+        <p class="tagline">Poet, officiant and small business builder.</p>
+        <div class="redrule" aria-hidden="true"></div>
+        <p class="lede">I write poems and ceremonies, build websites, and help small businesses get up and running.</p>
+        <img class="art bird" src="img/art/bird.webp" alt="" width="676" height="480">
       </div>
-    </div>
-    <div class="wrap tiles">
-      <a class="tile" href="#writing"><strong>Writing</strong><span>Two poetry collections</span></a>
-      <a class="tile" href="#websites"><strong>Websites</strong><span>Four sites I've built</span></a>
-      <a class="tile" href="#projects"><strong>Projects</strong><span>Businesses I've started</span></a>
+      <div class="portrait-col">
+        <figure class="portrait">
+          <img src="img/wren.jpg" alt="Wren Willett in teal octagon glasses, with a bluebird tattoo below the collar" width="900" height="1100">
+          <figcaption>Fig. 1 · The author</figcaption>
+        </figure>
+        <img class="art sprig" src="img/art/sprig-a.webp" alt="" width="148" height="586">
+      </div>
     </div>
   </section>
 
-  <section class="block" id="writing">
+  <div class="wrap"><div class="divider" role="presentation"><svg class="star" aria-hidden="true"><use href="#star"/></svg></div></div>
+
+  <section class="entry" id="poetry" aria-labelledby="poetry-h">
     <div class="wrap">
       <div class="head">
-        <p class="label">Writing</p>
-        <h2>Poetry and verse</h2>
+        <p class="label">No. 01 · Writing</p>
+        <h2 id="poetry-h">Poetry</h2>
         <p>Two self-published collections about family, home, love and the small moments in between.</p>
       </div>
-
-      <div class="books">
-        <article class="book">
-          <img class="cover-img" src="img/cells-cover.jpg" alt="Cover of Cells: A Collection of Poetry and Verse by Wren Willett" width="391" height="700">
-          <div class="info">
-            <h3>Cells</h3>
-            <p class="meta">2024 · 93 pages · paperback</p>
-            <p>Poems about family, womanhood and life, and the fleeting moments of joy and sorrow that shape us.</p>
-            <a class="btn" href="https://www.amazon.com/Cells-Collection-Poetry-Wren-Willett/dp/B0D93VGQ6W" target="_blank" rel="noopener">Buy the paperback</a>
+      <div class="poetry">
+        <div class="shelf">
+          <div class="books">
+            <article class="book">
+              <img src="img/cells-cover.jpg" alt="Cover of Cells: A Collection of Poetry and Verse by Wren Willett" width="391" height="700">
+              <h3>Cells</h3>
+              <p class="yr">2024 · 93 pages · Paperback</p>
+              <p class="desc">Poems about family, womanhood and life, and the fleeting moments of joy and sorrow that shape us.</p>
+              <a class="buy" href="https://www.amazon.com/Cells-Collection-Poetry-Wren-Willett/dp/B0D93VGQ6W" target="_blank" rel="noopener">Buy the paperback &rarr;</a>
+            </article>
+            <article class="book">
+              <img src="img/cats-cover.jpg" alt="Cover of Sometimes There's Cats: A Collection of Poetry and Verse by Wren Willett" width="439" height="700">
+              <h3>Sometimes There's Cats</h3>
+              <p class="yr">2021 · 54 pages · Paperback</p>
+              <p class="desc">Poems written between 2019 and 2021 about dreams, family and relationships, with a few short-story verses. Occasionally, there's cats involved.</p>
+              <a class="buy" href="https://www.amazon.com/Sometimes-Theres-Cats-Collection-Poetry/dp/B09NHD9FF3" target="_blank" rel="noopener">Buy the paperback &rarr;</a>
+            </article>
           </div>
-        </article>
-
-        <article class="book">
-          <img class="cover-img" src="img/cats-cover.jpg" alt="Cover of Sometimes There's Cats: A Collection of Poetry and Verse by Wren Willett" width="439" height="700">
-          <div class="info">
-            <h3>Sometimes There's Cats</h3>
-            <p class="meta">2021 · 54 pages · paperback</p>
-            <p>Poems written between 2019 and 2021 about dreams, family and relationships, with a few short-story verses. Occasionally, there's cats involved.</p>
-            <a class="btn" href="https://www.amazon.com/Sometimes-Theres-Cats-Collection-Poetry/dp/B09NHD9FF3" target="_blank" rel="noopener">Buy the paperback</a>
-          </div>
-        </article>
-      </div>
-
-      <div class="poems">
-        <article class="poem">
+          <article class="scrap glass">
+            <div class="paper">
+              <p class="label">Featured poem</p>
+              <h3>Glass</h3>
+<pre class="poem">"Finish me," she said to the sea
+And the thought resonated in me.
+"Make me soft and gentle and whole."
+Oh to be whole! 
+To be cherished and cradled carefully,
+loved and wanted for all of me.
+Take me! 
+Take every sharp edge and hard corner,
+every harsh light and cutting word,
+and help me be whole. 
+Fit me into the mosaic of your life.
+Coddle me,
+and hold me close to your pattern.
+Make me a part of it. 
+Finish me, or let me finish you.
+Let us find in each other
+the last pattern piece
+of our own stained glass.</pre>
+            </div>
+          </article>
+        </div>
+        <article class="featured">
+          <div class="kicker"><span>Featured Poem</span><svg class="star" aria-hidden="true" style="color:var(--gold)"><use href="#star"/></svg></div>
           <h3>Old Road</h3>
-<pre>I walked along the Old Roads
+<pre class="poem">I walked along the Old Roads
 And there I met with Death
 Grinning at his own jokes
 For a time we walked together
@@ -278,123 +372,129 @@ I make another joke and grin
 Life regards me fondly
 A brief goodbye
 We'll meet again along the Old Road</pre>
-        </article>
-        <article class="poem">
-          <h3>Glass</h3>
-<pre>"Finish me," she said to the sea
-And the thought resonated in me.
-"Make me soft and gentle and whole."
-Oh to be whole! 
-To be cherished and cradled carefully,
-loved and wanted for all of me.
-Take me! 
-Take every sharp edge and hard corner,
-every harsh light and cutting word,
-and help me be whole. 
-Fit me into the mosaic of your life.
-Coddle me,
-and hold me close to your pattern.
-Make me a part of it. 
-Finish me, or let me finish you.
-Let us find in each other
-the last pattern piece
-of our own stained glass.</pre>
+          <img class="art mush" src="img/art/mushroom-sm.webp" alt="" width="390" height="246" loading="lazy">
+          <img class="art torn mush-scrap" src="img/art/mushroom.webp" alt="" width="324" height="560" loading="lazy">
         </article>
       </div>
     </div>
   </section>
 
-  <section class="block" id="websites">
+  <div class="wrap"><div class="divider" role="presentation"><svg class="star" aria-hidden="true"><use href="#star"/></svg></div></div>
+
+  <section class="entry" id="sites" aria-labelledby="sites-h">
     <div class="wrap">
       <div class="head">
-        <p class="label">Websites</p>
-        <h2>Sites I've built</h2>
+        <p class="label">No. 02 · Websites</p>
+        <h2 id="sites-h">Sites I've built</h2>
         <p>Hand-built, fast and easy to keep up. Each one is written around the person or business it's for.</p>
       </div>
-      <div class="sites">
-        <article class="site-card">
-          <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="img/wildstar.jpg" alt="Home page of Wildstar Weddings" loading="lazy"></div>
+      <div class="tiles">
+        <article class="tile">
+          <a class="shot" href="https://wildstarweddings.com" target="_blank" rel="noopener"><img src="img/wildstar.jpg" alt="Home page of Wildstar Weddings" width="960" height="600" loading="lazy"></a>
           <h3>Wildstar Weddings</h3>
+          <a class="dom" href="https://wildstarweddings.com" target="_blank" rel="noopener">wildstarweddings.com</a>
           <p>My officiant business. I wrote, designed and built the whole site, from packages to the FAQ.</p>
-          <p class="built">Design · copy · build · hand-built HTML</p>
-          <a href="https://wildstarweddings.com" target="_blank" rel="noopener">wildstarweddings.com</a>
+          <p class="how">Design · copy · build · hand-built HTML</p>
         </article>
-        <article class="site-card">
-          <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="img/bluestem.jpg" alt="Home page of Bluestem Systems" loading="lazy"></div>
+        <article class="tile">
+          <a class="shot" href="https://bluestem.systems" target="_blank" rel="noopener"><img src="img/bluestem.jpg" alt="Home page of Bluestem Systems" width="960" height="600" loading="lazy"></a>
           <h3>Bluestem</h3>
+          <a class="dom" href="https://bluestem.systems" target="_blank" rel="noopener">bluestem.systems</a>
           <p>My operations consultancy, with packages, a booking link and a contact form.</p>
-          <p class="built">Design · copy · build · GitHub Pages</p>
-          <a href="https://bluestem.systems" target="_blank" rel="noopener">bluestem.systems</a>
+          <p class="how">Design · copy · build · GitHub Pages</p>
         </article>
-        <article class="site-card">
-          <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="img/teddy.jpg" alt="Home page of Teddy Johnson's painting site" loading="lazy"></div>
+        <article class="tile">
+          <a class="shot" href="https://teddyjohnsonart.com" target="_blank" rel="noopener"><img src="img/teddy.jpg" alt="Home page of Teddy Johnson's painting site" width="960" height="600" loading="lazy"></a>
           <h3>Teddy Johnson Art</h3>
+          <a class="dom" href="https://teddyjohnsonart.com" target="_blank" rel="noopener">teddyjohnsonart.com</a>
           <p>A portfolio for a Central Texas landscape painter, with a gallery and commission inquiries.</p>
-          <p class="built">Design · build · GitHub Pages</p>
-          <a href="https://teddyjohnsonart.com" target="_blank" rel="noopener">teddyjohnsonart.com</a>
+          <p class="how">Design · build · GitHub Pages</p>
         </article>
-        <article class="site-card">
-          <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="img/miles.jpg" alt="Home page of Miles Walker's illustration site" loading="lazy"></div>
+        <article class="tile">
+          <a class="shot" href="https://miles2walk.com" target="_blank" rel="noopener"><img src="img/miles.jpg" alt="Home page of Miles Walker's illustration site" width="960" height="600" loading="lazy"></a>
           <h3>Miles Walker Art</h3>
+          <a class="dom" href="https://miles2walk.com" target="_blank" rel="noopener">miles2walk.com</a>
           <p>A portfolio and print shop for a San Antonio fantasy illustrator, built to replace a Canva site.</p>
-          <p class="built">Design · build · GitHub Pages</p>
-          <a href="https://miles2walk.com" target="_blank" rel="noopener">miles2walk.com</a>
+          <p class="how">Design · build · GitHub Pages</p>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="block" id="projects">
+  <div class="wrap"><div class="divider" role="presentation"><svg class="star" aria-hidden="true"><use href="#star"/></svg></div></div>
+
+  <section class="entry" id="started" aria-labelledby="started-h">
     <div class="wrap">
       <div class="head">
-        <p class="label">Projects</p>
-        <h2>Things I've started</h2>
+        <p class="label">No. 03 · Ventures</p>
+        <h2 id="started-h">Things I've started</h2>
         <p>Businesses I run, help run, or am building now.</p>
       </div>
-      <div class="projects">
-        <article class="proj"><span class="status running">Running</span><h3>Wildstar Weddings</h3><p>Officiant and creative services in the Texas Hill Country. Every ceremony is written personally.</p></article>
-        <article class="proj"><span class="status running">Running</span><h3>Bluestem</h3><p>Operations consulting for small businesses: launch documents, SOPs, handbooks and simple systems.</p></article>
-        <article class="proj"><span class="status running">Running</span><h3>Rux Pool Cleaning</h3><p>A residential pool service in New Braunfels that I co-own with Teddy Johnson.</p></article>
-        <article class="proj"><span class="status running">Launched</span><h3>Teddy Johnson Art</h3><p>Website and online presence for Teddy's landscape paintings.</p></article>
-        <article class="proj"><span class="status running">Launched</span><h3>Miles Walker Art</h3><p>Website, print shop and licensing terms for Miles's illustration work.</p></article>
-        <article class="proj"><span class="status progress">In progress</span><h3>Sad Spending Club</h3><p>A brand in the works.</p></article>
+      <div class="ventures">
+        <div class="scrap ledger">
+          <div class="paper">
+            <ol>
+              <li><span class="no">V.01</span><div><div class="row"><h3>Wildstar Weddings</h3><span class="state running">Running</span></div><p>Officiant and creative services in the Texas Hill Country. Every ceremony is written personally.</p></div></li>
+              <li><span class="no">V.02</span><div><div class="row"><h3>Bluestem</h3><span class="state running">Running</span></div><p>Operations consulting for small businesses: launch documents, SOPs, handbooks and simple systems.</p></div></li>
+              <li><span class="no">V.03</span><div><div class="row"><h3>Rux Pool Cleaning</h3><span class="state running">Running</span></div><p>A residential pool service in New Braunfels that I co-own with Teddy Johnson.</p></div></li>
+              <li><span class="no">V.04</span><div><div class="row"><h3>Sad Spending Club</h3><span class="state progress">In progress</span></div><p>A brand in the works.</p></div></li>
+            </ol>
+            <p class="note">The websites are under No. 02. This list is the ventures themselves, with or without a site.</p>
+          </div>
+        </div>
+        <img class="art torn dagger" src="img/art/dagger.webp" alt="" width="332" height="420" loading="lazy">
       </div>
     </div>
   </section>
 
-  <section class="block" id="about">
+  <div class="wrap"><div class="divider" role="presentation"><svg class="star" aria-hidden="true"><use href="#star"/></svg></div></div>
+
+  <section class="entry" id="about" aria-labelledby="about-h">
     <div class="wrap">
       <div class="head">
-        <p class="label">About</p>
-        <h2>Hi, I'm Wren.</h2>
+        <p class="label">No. 04 · About</p>
+        <h2 id="about-h">Hi, I'm Wren.</h2>
       </div>
-      <div class="about-grid">
-        <img class="me" src="img/wren.jpg" alt="Wren Willett in floral sunglasses with a playful cat ear filter" width="735" height="898" loading="lazy">
-        <div class="about">
+      <div class="about">
+        <div class="text">
           <p>I'm a poet, officiant and builder of things in the New Braunfels area of Central Texas. I've self-published two poetry collections, Sometimes There's Cats (2021) and Cells (2024).</p>
           <p>Through Wildstar Weddings I write and officiate ceremonies, and through Bluestem I help small businesses launch with their paperwork and systems in order. I also co-run Rux Pool Cleaning and build websites, for my own projects and for others, including Wildstar, Bluestem, Teddy Johnson Art and Miles2Walk.</p>
           <p>I'm usually buzzing with a few new ideas at once, happily tangled in a comfortable jumble of notebooks and fountain pens.</p>
+        </div>
+        <div class="ledge" aria-hidden="true">
+          <img class="art sprig" src="img/art/sprig-b.webp" alt="" width="136" height="590" loading="lazy">
+          <img class="art cat" src="img/art/cat.webp" alt="" width="312" height="248" loading="lazy">
         </div>
       </div>
     </div>
   </section>
 
-  <section class="block" id="contact">
+  <div class="wrap"><div class="divider" role="presentation"><svg class="star" aria-hidden="true"><use href="#star"/></svg></div></div>
+
+  <section class="entry" id="contact" aria-labelledby="contact-h">
     <div class="wrap">
       <div class="head">
-        <p class="label">Contact</p>
-        <h2>Say hello</h2>
+        <p class="label">No. 05 · Contact</p>
+        <h2 id="contact-h">Say hello</h2>
         <p>For books, websites, ceremonies or a project of your own. Send a note and I'll get back to you.</p>
       </div>
-      <!-- Contact form posts to Formspree form "Wren Willett - Contact", which emails Wren. -->
-      <form class="contact-form" id="contact-form" action="https://formspree.io/f/xnpdobay" method="POST">
-        <label>Name<input type="text" name="name" autocomplete="name" required></label>
-        <label>Email<input type="email" name="email" autocomplete="email" required></label>
-        <label>Message<textarea name="message" rows="6" required></textarea></label>
-        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-        <button class="btn" type="submit">Send message</button>
-        <p class="form-note" id="form-note" role="status" hidden></p>
-      </form>
+      <div class="contact">
+        <div class="scrap card">
+          <div class="paper">
+            <div class="cardhead"><span class="label">A note for Wren</span><span>I reply by email</span></div>
+            <!-- Contact form posts to Formspree form "Wren Willett - Contact", which emails Wren. -->
+            <form class="contact-form" id="contact-form" action="https://formspree.io/f/xnpdobay" method="POST">
+              <label for="cf-name">Your name<input id="cf-name" type="text" name="name" autocomplete="name" required></label>
+              <label for="cf-email">Your email<input id="cf-email" type="email" name="email" autocomplete="email" required></label>
+              <label for="cf-message">Message<textarea id="cf-message" name="message" rows="6" required></textarea></label>
+              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+              <button class="send" type="submit">Send message</button>
+              <p class="form-note" id="form-note" role="status" hidden></p>
+            </form>
+          </div>
+        </div>
+        <img class="art heart" src="img/art/heart.webp" alt="" width="364" height="520" loading="lazy">
+      </div>
       <script>
         (function () {
           var f = document.getElementById('contact-form'), n = document.getElementById('form-note');
@@ -416,8 +516,13 @@ of our own stained glass.</pre>
   </section>
 </main>
 
-<footer>
-  <div class="wrap"><span>Wren Willett · New Braunfels, Texas</span><span>© 2026</span></div>
+<footer class="colophon">
+  <div class="wrap">
+    <div class="line"></div>
+    <svg class="star" aria-hidden="true"><use href="#star"/></svg>
+    <p>Made in New Braunfels, Texas. Written, designed and maintained by Wren Willett.</p>
+    <span class="mono">Set in Young Serif, Figtree and IBM Plex Mono · © 2026</span>
+  </div>
 </footer>
 </body>
 </html>
